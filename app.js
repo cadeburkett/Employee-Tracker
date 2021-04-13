@@ -1,7 +1,6 @@
 const mysql = require("mysql");
 const inquirer = require("inquirer");
 const util = require("util");
-const consoleTable = require("console.table");
 
 const connection = mysql.createConnection({
     host: "localhost",
@@ -106,26 +105,26 @@ const addRole = () => {
             {
                 type: "input",
                 message: "What is the role?",
-                name: "roleName"
+                name: "roleTitle"
             },
             {
                 type: "input",
                 message: "What is the salary of the role?",
                 name: "roleSal"
             },
-            // {
-            //     type: "input",
-            //     message: "What is the role's department?",
-            //     name: "roleDep",
-            // },
+            {
+                type: "input",
+                message: "What is the role's department ID?",
+                name: "roleDepId",
+            },
         ]
     ).then((response) => {
         let query = connection.query(
-            "INSERT INTO roll SET ? ",
+            "INSERT INTO role SET ? ",
             {
-                name: response.roleName,
+                title: response.roleTitle,
                 salary: response.roleSal,
-
+                department_id: response.roleDepId
 
             },
             (err) => {
@@ -142,27 +141,28 @@ const addEmp = () => {
         [
             {
                 type: "input",
-                message: "What is the role?",
-                name: "roleName"
+                message: "What is the employee's first name?",
+                name: "empFirstName"
             },
             {
                 type: "input",
-                message: "What is the salary of the role?",
-                name: "roleSal"
+                message: "What is the employee's last name?",
+                name: "empLastName"
             },
             // {
-            //     type: "input",
-            //     message: "What is the role's department?",
-            //     name: "roleDep",
+            //     type: "list",
+            //     message: "What is the employee's role?",
+            //     name: "empRole",
+            //     choices: []
             // },
         ]
     ).then((response) => {
         let query = connection.query(
-            "INSERT INTO roll SET ? ",
+            "INSERT INTO employee SET ? ",
             {
-                name: response.roleName,
-                salary: response.roleSal,
-                // department_id: response.roleDep
+                first_name: response.empFirstName,
+                last_name: response.empLastName,
+                // role_id: response.empRole,
             },
             (err) => {
                 if (err) throw err;

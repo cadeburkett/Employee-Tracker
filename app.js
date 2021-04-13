@@ -37,49 +37,50 @@ const init = () => {
             ]
         }
     ]
-    .then((response) => {
-        switch (response.taskList) {
-            case "Add department":
-                addDep();
-                break;
+)
+.then((response) => {
+    switch (response.taskList) {
+        case "Add department":
+            addDep();
+            break;
 
-            case "Add role":
-                addRole();
-                break;
+        case "Add role":
+            addRole();
+            break;
 
-            case "Add employee":
-                addEmp();
-                break;
+        case "Add employee":
+            addEmp();
+            break;
 
-            case "View departments":
-                viewDep();
-                break;
+        case "View departments":
+            viewDep();
+            break;
 
-            case "View roles":
-                viewRole();
-                break;
-            
-            case "View employees":
-                viewEmp();
-                break;
+        case "View roles":
+            viewRole();
+            break;
+        
+        case "View employees":
+            viewEmp();
+            break;
 
-            case "Update employee role":
-                updateEmpRole();
-                break;
+        case "Update employee role":
+            updateEmpRole();
+            break;
 
-            default:
-                console.log("Goodbye")
-                connection.end();
-                process.exit(0);
-        }
-    })
-)}
+        default:
+            console.log("Goodbye")
+            connection.end();
+            process.exit(0);
+    }
+})}
+
 
 const addDep = () => {
     inquirer.prompt(
         [
             {
-                type: "list",
+                type: "input",
                 message: "What is the deparment's name?",
                 name: "depName"
             }
